@@ -18,21 +18,20 @@ Amenities (count, luxury amenity count)
 Categorical features like cancellation policy and room type
 🧪 Model Used
 
-A Lasso regression model was trained and tested on the processed data. Unfortunately, despite a meticulous EDA process, the model performance was underwhelming.
+During most of the time and the different tries at it, a Lasso regression model was trained and tested on the processed data. Unfortunately, despite a meticulous EDA process, the model performance was underwhelming.
+[see file: Practica_Machine_Learning](./Practica_Machine_Learning.ipynb)
+Then I decided to try other models quickly (Random Forest and Decision Tree), and tried with a different aproach to the inital data (one of the many tries). These last ones performed greatly compared to the Lasso model.
+[see file: Other Models](./Practica_Machine_Learning_Other_Models.ipynb)
 
-🔢 Performance Metrics
-Metric	Train Set	Test Set
-MSE (Mean Squared Error)	0.208	0.234
-RMSE (Root Mean Squared Error)	0.456	0.484
-🔍 Lasso Coefficients (Partial)
-The Lasso model automatically shrank many coefficients to zero. Selected non-zero coefficients:
+🔢 Modeling and Results
 
-Bathrooms: 0.234
-Beds: 0.015
-Amenity count: 0.064
-Has security deposit: 0.061
-Room Type_Shared room: -0.154
-Most other variables (including location and city) had coefficients of zero.
+Lasso Regression
+Lasso regression was used as an initial model due to its ability to perform automatic feature selection. However, it did not perform well, likely due to its inability to capture non-linear interactions between variables.
+The Lasso model automatically shrank many coefficients to zero. 
+Feature coefficients showed that many variables were pushed to zero, indicating strong regularization but poor overall model fit.
+
+🔍 Tree-Based Models
+I later implemented Decision Tree and Random Forest regressors. These models performed significantly better on both train and test sets. The improvement is likely due to their ability to capture non-linear relationships and interactions between variables—something Lasso regression cannot do.
 
 🧠 Lessons Learned
 
@@ -40,15 +39,16 @@ The limited performance is likely due to an overemphasis on EDA and variable eng
 
 Alternative models (e.g. Random Forest, Gradient Boosting)
 Hyperparameter tuning
-Feature selection and dimensionality reduction
 Pipeline design and cross-validation strategies
 This has been a valuable learning experience in balancing preparation and iteration in the machine learning workflow.
 
 ⚙️ Next Steps
 
-To improve this project, future work will focus on:
+Tune hyperparameters of tree-based models
+Explore ensemble methods (e.g., Gradient Boosting, XGBoost)
+Evaluate feature importance and SHAP values for interpretability
+Build a lightweight dashboard or report
 
-Implementing multiple model types and comparing performance
-Automating feature selection and transformations
-Applying cross-validation and grid search
-Revisiting feature encoding strategies (e.g. target encoding, interactions)
+###Conclusion
+
+This project was a valuable exercise in end-to-end machine learning, from EDA to model comparison. While Lasso regression offered a simple and interpretable baseline, tree-based models clearly outperformed it due to their flexibility in modeling complex relationships.
